@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';  
+import 'package:myportofolio_mobile/widgets/project_card.dart';
 
 /// Model data untuk satu tombol aksi pada halaman utama.
 ///
@@ -53,7 +55,11 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white)
       ),
+
+      drawer: const LeftDrawer(),
+
       // SafeArea menjauhkan konten dari notch/tepi layar.
       body: SafeArea(
         // Center + ConstrainedBox: batasi lebar agar rapi di layar lebar
@@ -61,7 +67,7 @@ class MyHomePage extends StatelessWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            // SingleChildScrollView: halaman bisa di-scroll sehingga tidak
+            // SingleCvhildScrollView: halaman bisa di-scroll sehingga tidak
             // overflow pada layar kecil.
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
@@ -170,72 +176,3 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-/// Tombol aksi berbentuk kartu berwarna.
-///
-/// Warna, ikon, dan teks seluruhnya dibaca dari [item]. Saat ditekan,
-/// menampilkan SnackBar "Kamu telah menekan tombol [nama]!".
-class ItemCard extends StatelessWidget {
-  /// Data tombol yang ditampilkan.
-  final ItemHomepage item;
-
-  const ItemCard(this.item, {super.key});
-
-  /// Menampilkan SnackBar berwarna sesuai tombol; SnackBar lama ditutup dulu
-  /// agar pesan tidak menumpuk.
-  void _showSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          backgroundColor: item.color,
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 2),
-          content: Row(
-            children: [
-              Icon(item.icon, color: Colors.white),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'Kamu telah menekan tombol ${item.name}!',
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      elevation: 2,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: () => _showSnackBar(context),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(item.icon, color: Colors.white, size: 30),
-              const SizedBox(height: 6),
-              Text(
-                item.name,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
