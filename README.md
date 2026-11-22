@@ -95,3 +95,31 @@ flutter test         # jalankan widget test
    - **Full restart** (stop lalu `flutter run` lagi) dilakukan dengan menghentikan aplikasi yang sedang berjalan, kemudian menjalankannya kembali. Full restart biasanya diperlukan ketika terdapat perubahan konfigurasi native, seperti konfigurasi Android atau iOS, penambahan plugin yang membutuhkan konfigurasi native, atau ketika hot reload dan hot restart belum berhasil menerapkan perubahan.
 
    Dalam pengembangan MyPortfolio Mobile, hot reload dapat digunakan ketika mengubah warna ItemCard, teks, ikon, atau susunan widget karena perubahan tersebut umumnya dapat langsung diterapkan tanpa mengatur ulang aplikasi. Namun, jika perubahan berkaitan dengan inisialisasi aplikasi atau membutuhkan pemuatan ulang state, developer dapat menggunakan hot restart. Jika perubahan melibatkan konfigurasi native atau penambahan plugin yang memerlukan proses build ulang, developer perlu melakukan full restart.
+
+---
+---
+### **TUGAS 8**
+---
+#### **AI Disclosure 🤖**
+   Saya menggunakan ChatGPT untuk membantu memahami dan melakukan refactoring kode Flutter, termasuk memberikan saran terkait struktur kode dan penggunaan komponen. Saya juga menggunakan ChatGPT untuk membantu mengembangkan tampilan UI, seperti penyesuaian warna tema, font, dan styling komponen. Selain itu, ChatGPT digunakan untuk membantu meninjau kesesuaian implementasi dengan requirements tugas serta mengidentifikasi kemungkinan error atau masalah yang belum terdeteksi melalui Flutter Analyze. Seluruh saran yang diberikan tetap saya tinjau dan sesuaikan kembali dengan kebutuhan proyek.
+   1. **Refactoring di Flutter** https://chatgpt.com/share/6b02e350-3860-83ec-8674-96396e9036a8 
+   2. **Mengembangkan Tampilan di Flutter** https://chatgpt.com/share/6b02e35f-b42c-83ec-b1e1-675061d1b405
+   3. **Meninjau Tugas 8**
+---
+#### **Refleksi**
+1. **Jelaskan perbedaan antara Navigator.push(), Navigator.pushReplacement(), dan Navigator.pop(). Metode apa yang digunakan untuk membuka formulir dari kartu aksi? Jelaskan juga bagaimana opsi Home di drawer membawa pengguna kembali ke halaman utama.**
+   - Method `Navigator.push()` menambahkan suatu route ke dalam stack route yang dikelola oleh Navigator. Method ini menyebabkan route yang ditambahkan berada pada paling atas stack, sehingga route yang baru saja ditambahkan tersebut akan muncul dan ditampilkan kepada pengguna.
+   - Method `Navigator.pushReplacement()` menghapus route yang sedang ditampilkan kepada pengguna dan menggantinya dengan suatu route. Method ini menyebabkan aplikasi berpindah dari route yang sedang ditampilkan kepada pengguna ke suatu route yang diberikan. Pada stack route yang dikelola Navigator, route lama pada atas stack akan digantikan secara langsung oleh route baru yang diberikan tanpa mengubah kondisi elemen stack yang berada di bawahnya.
+   - Method `Navigator.pop()` menghapus route yang sedang ditampilkan kepada pengguna (atau dalam kata lain, route yang berada pada paling atas stack) dari stack route yang dikelola oleh Navigator. Method ini menyebabkan aplikasi untuk berpindah dari route yang sedang ditampilkan kepada pengguna ke route yang berada di bawahnya.
+   - Pada aplikasi ini, `Navigator.push()` digunakan untuk membuka formulir dari kartu aksi di halaman utama. Sementara itu, opsi Home pada Drawer menggunakan `Navigator.pushReplacement()` untuk menggantikan halaman formulir dengan halaman utama, sehingga pengguna dapat kembali ke Home melalui Drawer.
+
+2. **Bagaimana susunan Scaffold, AppBar, dan Drawer membantu menjaga struktur halaman tetap konsisten? Berikan satu contoh penggunaan warna tema portofolio di lebih dari satu halaman.**
+   - `Scaffold` menyediakan struktur dasar untuk setiap halaman, sedangkan `AppBar` digunakan sebagai bagian header dan `Drawer` sebagai penyedia menu untuk navigasi antar halaman. Susunan komponen yang konsisten membuat tampilan dan navigasi aplikasi menjadi lebih seragam sehingga pengguna tidak perlu mempelajari ulang cara mengakses halaman yang berbeda.
+   - Sebagai contoh, warna `primary` dari `ColorScheme` dapat digunakan sebagai warna latar `AppBar` pada halaman Home maupun halaman-halaman Form. Kemudian  warna `surface` dari `ColorScheme` dapat digunakan sebagai warna latar di tiap halaman. Dengan begitu, setiap halaman memiliki identitas warna yang sama karena menggunakan tema yang didefinisikan di `main.dart`.
+3. **Mengapa tata letak tersebut dipilih untuk formulir? Jelaskan peran widget pengatur jarak dan widget penggulir ketika ruang layar terbatas.**
+   - Saya memilih `Column` untuk menyusun seluruh elemen formulir secara vertikal agar pengguna dapat mengisi setiap input secara berurutan. Widget `Padding` digunakan untuk memberikan jarak di sekitar setiap elemen sehingga formulir lebih rapi dan nyaman digunakan. Sementara itu, `SingleChildScrollView` memungkinkan pengguna menggulir halaman ketika seluruh elemen formulir tidak muat dalam ruang layar yang tersedia, misalnya ketika ukuran layar terbatas atau keyboard sedang terbuka. 
+
+4. **Apa peran GlobalKey<FormState>, validator, dan validate() saat tombol Simpan ditekan? Berikan satu contoh nilai yang ditolak oleh validasi dan jelaskan mengapa memilih jenis input atau papan ketik saja belum cukup.**
+   - `GlobalKey<FormState>` digunakan untuk mengakses dan mengelola state dari `Form` melalui variabel `_formKey`. Setiap input yang memerlukan validasi memiliki `validator` yang berisi aturan untuk menentukan apakah nilai yang dimasukkan valid atau tidak. Ketika tombol Save ditekan, `validate()` akan menjalankan seluruh validator pada formulir. Jika terdapat input yang tidak valid, pesan kesalahan akan ditampilkan dan `AlertDialog` tidak akan muncul. Sebaliknya, jika seluruh input valid, aplikasi akan menampilkan `AlertDialog` yang berisi nilai-nilai yang telah dimasukkan pengguna.
+   - Sebagai contoh, input Nama Proyek yang hanya berisi spasi seperti `"   "` akan ditolak karena validator menggunakan `trim().isEmpty` untuk memastikan bahwa input tidak hanya terdiri dari whitespace. Pemilihan jenis input atau keyboard saja belum cukup karena hanya membantu mengatur cara pengguna memasukkan data, bukan menjamin bahwa data tersebut memenuhi aturan validasi yang ditentukan oleh aplikasi.
+   
