@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 import 'package:myportofolio_mobile/screens/experience_form.dart';
+import 'package:myportofolio_mobile/screens/education_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -86,6 +87,23 @@ class LeftDrawer extends StatelessWidget {
                 ),
               );
 
+            },
+          ),
+          
+          ListTile(
+            leading: Icon(Icons.add_circle_outline),
+            title: const Text('Add Education'),
+            textColor: Theme.of(context).colorScheme.surface,
+            iconColor: Theme.of(context).colorScheme.surface,
+
+            // Navigasi ke halaman tambah pendidikan
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EducationFormPage(),
+                ),
+              );
             },
           ),
         ],
