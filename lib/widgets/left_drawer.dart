@@ -11,9 +11,10 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          const DrawerHeader(
+          // tanya: const
+          DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.indigo,
+              color: Theme.of(context).colorScheme.primary,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +24,6 @@ class LeftDrawer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -31,7 +31,6 @@ class LeftDrawer extends StatelessWidget {
                   'Explore personal projects and experiences!',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.white,
                   ),
                 ),
               ],
@@ -39,8 +38,11 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.home_outlined),
+            leading: Icon(Icons.home_outlined),
             title: const Text('Home'),
+            textColor: Theme.of(context).colorScheme.surface,
+            iconColor: Theme.of(context).colorScheme.surface,
+
             // Navigasi ke halaman utama portofolio
             onTap: () {
               Navigator.pushReplacement(
@@ -52,8 +54,11 @@ class LeftDrawer extends StatelessWidget {
             },
           ), 
           ListTile(
-            leading: const Icon(Icons.add_circle_outline),
+            leading: Icon(Icons.add_circle_outline),
             title: const Text('Add Project'),
+            textColor: Theme.of(context).colorScheme.surface,
+            iconColor: Theme.of(context).colorScheme.surface,
+
             // Navigasi ke halaman tambah proyek
             onTap: () {
               Navigator.pushReplacement(
@@ -67,8 +72,11 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.add_circle_outline),
+            leading: Icon(Icons.add_circle_outline),
             title: const Text('Add Experience'),
+            textColor: Theme.of(context).colorScheme.surface,
+            iconColor: Theme.of(context).colorScheme.surface,
+
             // Navigasi ke halaman tambah pengalaman
             onTap: () {
               Navigator.pushReplacement(

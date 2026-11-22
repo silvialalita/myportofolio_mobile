@@ -97,7 +97,8 @@ class MyHomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   // Kartu sambutan.
-                  const Card(
+                  Card(
+                    color: Theme.of(context).colorScheme.primary,
                     child: Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -158,20 +159,21 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
+      color: Theme.of(context).colorScheme.primary,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(content, textAlign: TextAlign.center),
-          ],
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(content, textAlign: TextAlign.center),
+            ],
+          ),
         ),
-      ),
     );
   }
 }

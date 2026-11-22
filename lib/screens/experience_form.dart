@@ -41,8 +41,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
             'Add Experience Form',
           ),
         ),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
 
       drawer: const LeftDrawer(),
@@ -112,6 +112,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                     labelText: "Kategori Pengalaman",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
+                      
                     ),
                   ),
                   initialValue: _category,
@@ -181,7 +182,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          WidgetStateProperty.all(Colors.indigo),
+                          WidgetStateProperty.all(Theme.of(context).colorScheme.secondary),
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -189,7 +190,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('Pengalaman berhasil ditambahkan!'),
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              title: const Text('Pengalaman berhasil ditambahkan!', style: TextStyle(fontWeight: FontWeight.bold),),
                               content: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,7 +206,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                               ),
                               actions: [
                                 TextButton(
-                                  child: const Text('OK'),
+                                  child: const Text('OK', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                                   onPressed: () {
                                     Navigator.pop(context);
                                     _formKey.currentState!.reset();

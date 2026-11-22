@@ -34,8 +34,8 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
             'Add Project Form',
           ),
         ),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
 
       drawer: const LeftDrawer(),
@@ -168,7 +168,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          WidgetStateProperty.all(Colors.indigo),
+                          WidgetStateProperty.all(Theme.of(context).colorScheme.secondary),
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -176,7 +176,8 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('Proyek berhasil ditambahkan!'),
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              title: const Text('Proyek berhasil ditambahkan!', style: TextStyle(fontWeight: FontWeight.bold),),
                               content: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +192,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                               ),
                               actions: [
                                 TextButton(
-                                  child: const Text('OK'),
+                                  child: const Text('OK', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                                   onPressed: () {
                                     Navigator.pop(context);
                                     _formKey.currentState!.reset();
