@@ -101,10 +101,12 @@ flutter test         # jalankan widget test
 ### **TUGAS 8**
 ---
 #### **AI Disclosure 🤖**
-   Saya menggunakan ChatGPT untuk membantu memahami dan melakukan refactoring kode Flutter, termasuk memberikan saran terkait struktur kode dan penggunaan komponen. Saya juga menggunakan ChatGPT untuk membantu mengembangkan tampilan UI, seperti penyesuaian warna tema, font, dan styling komponen. Selain itu, ChatGPT digunakan untuk membantu meninjau kesesuaian implementasi dengan requirements tugas serta mengidentifikasi kemungkinan error atau masalah yang belum terdeteksi melalui Flutter Analyze. Seluruh saran yang diberikan tetap saya tinjau dan sesuaikan kembali dengan kebutuhan proyek.
+   Saya menggunakan ChatGPT untuk membantu memahami dan melakukan refactoring kode Flutter, termasuk memberikan saran terkait struktur kode dan penggunaan komponen. Saya juga menggunakan ChatGPT untuk membantu mengembangkan tampilan UI, seperti penyesuaian warna tema, font, dan styling komponen.
+   
+   Strategi yang saya lakukan yaitu memberikan potongan kode dan konteks implementasi yang sedang dikerjakan, kemudian mengajukan pertanyaan mengenai konsep, masalah, dan alternatif perbaikan. Selain itu, ChatGPT juga digunakan untuk membantu meninjau kesesuaian implementasi dengan requirements tugas serta mengidentifikasi kemungkinan error atau masalah yang belum terdeteksi melalui Flutter Analyze. Seluruh saran yang diberikan tetap saya tinjau dan sesuaikan kembali dengan kebutuhan proyek.
    1. **Refactoring di Flutter** https://chatgpt.com/share/6b02e350-3860-83ec-8674-96396e9036a8 
    2. **Mengembangkan Tampilan di Flutter** https://chatgpt.com/share/6b02e35f-b42c-83ec-b1e1-675061d1b405
-   3. **Meninjau Tugas 8**
+   3. **Meninjau Tugas 8** https://chatgpt.com/share/6b03d65c-4f38-83ec-950d-5fd2e9468811
 ---
 #### **Refleksi**
 1. **Jelaskan perbedaan antara Navigator.push(), Navigator.pushReplacement(), dan Navigator.pop(). Metode apa yang digunakan untuk membuka formulir dari kartu aksi? Jelaskan juga bagaimana opsi Home di drawer membawa pengguna kembali ke halaman utama.**
@@ -121,5 +123,5 @@ flutter test         # jalankan widget test
 
 4. **Apa peran GlobalKey<FormState>, validator, dan validate() saat tombol Simpan ditekan? Berikan satu contoh nilai yang ditolak oleh validasi dan jelaskan mengapa memilih jenis input atau papan ketik saja belum cukup.**
    - `GlobalKey<FormState>` digunakan untuk mengakses dan mengelola state dari `Form` melalui variabel `_formKey`. Setiap input yang memerlukan validasi memiliki `validator` yang berisi aturan untuk menentukan apakah nilai yang dimasukkan valid atau tidak. Ketika tombol Save ditekan, `validate()` akan menjalankan seluruh validator pada formulir. Jika terdapat input yang tidak valid, pesan kesalahan akan ditampilkan dan `AlertDialog` tidak akan muncul. Sebaliknya, jika seluruh input valid, aplikasi akan menampilkan `AlertDialog` yang berisi nilai-nilai yang telah dimasukkan pengguna.
-   - Sebagai contoh, input Nama Proyek yang hanya berisi spasi seperti `"   "` akan ditolak karena validator menggunakan `trim().isEmpty` untuk memastikan bahwa input tidak hanya terdiri dari whitespace. Pemilihan jenis input atau keyboard saja belum cukup karena hanya membantu mengatur cara pengguna memasukkan data, bukan menjamin bahwa data tersebut memenuhi aturan validasi yang ditentukan oleh aplikasi.
+   - Sebagai contoh, input Nama Pengalaman yang hanya berisi spasi seperti `"   "` akan ditolak karena validator menggunakan `trim().isEmpty` untuk memastikan bahwa input tidak hanya terdiri dari whitespace. Pemilihan jenis input atau keyboard saja belum cukup karena hanya membantu mengatur cara pengguna memasukkan data, bukan menjamin bahwa data tersebut memenuhi aturan validasi yang ditentukan oleh aplikasi.
    
