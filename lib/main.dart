@@ -1,40 +1,56 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
+import 'package:myportofolio_mobile/services/api_client.dart';
+import 'package:myportofolio_mobile/services/auth_state.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(apiClient: ApiClient()));
 }
 
 /// Widget root aplikasi: membungkus seluruh app dengan [MaterialApp]
 /// (tema Material 3 dan halaman awal [MyHomePage]).
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({required this.apiClient, super.key});
+
+  final ApiClient apiClient;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MyPortfolio',
-      debugShowCheckedModeBanner: false,
-      
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, primary: const Color.fromARGB(255, 108, 9, 157))
-        .copyWith(
-        primary: const Color.fromARGB(255, 146, 12, 213),
-        onPrimary: const Color(0xFFFAF5ED),
-        secondary:const Color(0xFFb82aff),
-        onSecondary: const Color(0xFF1f1f1f),
-        tertiary: const Color(0xFFffed2a),
-        onTertiary: const Color.fromRGBO(31, 31, 31, 1),
+    return MultiProvider(
+      providers: [
+        Provider<ApiClient>.value(value: apiClient),
+        ChangeNotifierProvider<AuthState>(
+          create: (context) => AuthState(apiClient),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'MyPortfolio',
+        debugShowCheckedModeBanner: false,
 
-        surface: const Color(0xFF000000),
-        onSurface: const Color(0xFFFAF5ED),
-        onSurfaceVariant: const Color.fromARGB(255, 72, 72, 72),
-        outline: const Color.fromARGB(255, 72, 72, 72),
-        error: const Color.fromARGB(255, 184, 0, 0),
+        theme: ThemeData(
+          colorScheme:
+              ColorScheme.fromSeed(
+                seedColor: Colors.black,
+                primary: const Color.fromARGB(255, 108, 9, 157),
+              ).copyWith(
+                primary: const Color.fromARGB(255, 146, 12, 213),
+                onPrimary: const Color(0xFFFAF5ED),
+                secondary: const Color(0xFFb82aff),
+                onSecondary: const Color(0xFF1f1f1f),
+                tertiary: const Color(0xFFffed2a),
+                onTertiary: const Color.fromRGBO(31, 31, 31, 1),
+
+                surface: const Color(0xFF000000),
+                onSurface: const Color(0xFFFAF5ED),
+                onSurfaceVariant: const Color.fromARGB(255, 72, 72, 72),
+                outline: const Color.fromARGB(255, 72, 72, 72),
+                error: const Color.fromARGB(255, 184, 0, 0),
+              ),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(),
       ),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
     );
   }
 }
