@@ -48,9 +48,7 @@ import 'package:myportofolio_mobile/services/api_client.dart';
 
 void main() {
   testWidgets('Aplikasi dapat ditampilkan', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MyApp(apiClient: ApiClient()),
-    );
+    await tester.pumpWidget(MyApp(apiClient: ApiClient()));
 
     expect(find.byType(MyApp), findsOneWidget);
   });
