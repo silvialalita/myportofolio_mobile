@@ -9,7 +9,6 @@ class EducationFormPage extends StatefulWidget {
 }
 
 class _EducationFormPageState extends State<EducationFormPage> {
-  
   final _formKey = GlobalKey<FormState>();
   String _eduTitle = "";
   String _description = "";
@@ -28,17 +27,13 @@ class _EducationFormPageState extends State<EducationFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Add Education Form',
-          ),
-        ),
+        title: const Center(child: Text('Add Education Form')),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
 
       drawer: const LeftDrawer(),
-      
+
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -87,7 +82,6 @@ class _EducationFormPageState extends State<EducationFormPage> {
                       _description = value!;
                     });
                   },
-                  
                 ),
               ),
 
@@ -99,15 +93,16 @@ class _EducationFormPageState extends State<EducationFormPage> {
                     labelText: "Kategori Pendidikan",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
-                      
                     ),
                   ),
                   initialValue: _category,
                   items: _categories
-                      .map((category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category),
-                          ))
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(category),
+                        ),
+                      )
                       .toList(),
                   onChanged: (String? newValue) {
                     setState(() {
@@ -168,8 +163,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Theme.of(context).colorScheme.secondary),
+                      backgroundColor: WidgetStateProperty.all(
+                        Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -177,13 +173,20 @@ class _EducationFormPageState extends State<EducationFormPage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              backgroundColor: Theme.of(context).colorScheme.primary,
-                              title: const Text('Pendidikan berhasil ditambahkan!', style: TextStyle(fontWeight: FontWeight.bold),),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primary,
+                              title: const Text(
+                                'Pendidikan berhasil ditambahkan!',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                               content: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Nama Institusi Pendidikan: $_eduTitle'),
+                                    Text(
+                                      'Nama Institusi Pendidikan: $_eduTitle',
+                                    ),
                                     Text('Deskripsi: $_description'),
                                     Text('Kategori: $_category'),
                                     Text('Durasi: $_duration'),
@@ -193,7 +196,13 @@ class _EducationFormPageState extends State<EducationFormPage> {
                               ),
                               actions: [
                                 TextButton(
-                                  child: const Text('OK', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                                  child: const Text(
+                                    'OK',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   onPressed: () {
                                     Navigator.pop(context);
                                     _formKey.currentState!.reset();
@@ -204,7 +213,6 @@ class _EducationFormPageState extends State<EducationFormPage> {
                           },
                         );
                       }
-
                     },
                     child: const Text(
                       "Save",
@@ -213,7 +221,6 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

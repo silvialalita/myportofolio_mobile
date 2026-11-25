@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myportofolio_mobile/widgets/left_drawer.dart';  
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 import 'package:myportofolio_mobile/widgets/project_card.dart';
 
 /// Model data untuk satu tombol aksi pada halaman utama.
@@ -33,12 +33,12 @@ class MyHomePage extends StatelessWidget {
 
   /// Daftar tombol aksi beserta warna uniknya.
   static const List<ItemHomepage> _items = [
-    ItemHomepage('Lihat Proyek', Icons.code, Colors.pink), 
-    ItemHomepage('Tambah Proyek', Icons.add_circle, Colors.orange), 
-    ItemHomepage('Lihat Education', Icons.school, Colors.yellow), 
-    ItemHomepage('Tambah Education', Icons.add_circle, Colors.green), 
-    ItemHomepage('Lihat Pengalaman', Icons.folder, Colors.blue), 
-    ItemHomepage('Tambah Pengalaman', Icons.add_circle, Colors.purpleAccent), 
+    ItemHomepage('Lihat Proyek', Icons.code, Colors.pink),
+    ItemHomepage('Tambah Proyek', Icons.add_circle, Colors.orange),
+    ItemHomepage('Lihat Education', Icons.school, Colors.yellow),
+    ItemHomepage('Tambah Education', Icons.add_circle, Colors.green),
+    ItemHomepage('Lihat Pengalaman', Icons.folder, Colors.blue),
+    ItemHomepage('Tambah Pengalaman', Icons.add_circle, Colors.purpleAccent),
     ItemHomepage('Logout', Icons.logout, Color(0xFFC62828)), // merah
   ];
 
@@ -49,13 +49,10 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'MyPortfolio',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        iconTheme: const IconThemeData(color: Colors.white)
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
 
       drawer: const LeftDrawer(),
@@ -131,9 +128,7 @@ class MyHomePage extends StatelessWidget {
                     shrinkWrap: true,
                     // Scroll ditangani SingleChildScrollView di atasnya.
                     physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      for (final item in _items) ItemCard(item),
-                    ],
+                    children: [for (final item in _items) ItemCard(item)],
                   ),
                 ],
               ),
@@ -161,20 +156,16 @@ class InfoCard extends StatelessWidget {
       elevation: 2,
       color: Theme.of(context).colorScheme.primary,
       child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(content, textAlign: TextAlign.center),
-            ],
-          ),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(content, textAlign: TextAlign.center),
+          ],
         ),
+      ),
     );
   }
 }
-
