@@ -4,6 +4,10 @@ import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/experience_form.dart';
 import 'package:myportofolio_mobile/screens/education_form.dart';
 import 'package:myportofolio_mobile/widgets/auth_guard.dart';
+import 'package:myportofolio_mobile/screens/project_list_screen.dart';
+import 'package:myportofolio_mobile/services/auth_state.dart';
+
+import 'package:provider/provider.dart';
 
 /// Tombol aksi berbentuk kartu berwarna.
 ///
@@ -55,21 +59,47 @@ class ItemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         // Area responsif terhadap sentuhan
         onTap: () async {
-          // Memunculkan SnackBar ketika diklik
-          // Modified biar snackbar warna-warni dan ada icon 🤩
           _showSnackBar(context);
 
-          // Mengecek apakah pengguna sudah login.
-          final allowed = await ensureLoggedIn(context);
-          if (!allowed || !context.mounted) return;
+          // Tombol Lihat Proyek: langsung membuka daftar proyek.
+          if (item.name == "Lihat Proyek") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProjectListScreen(),
+              ),
+            );
+            return;
+          }
 
-          // Navigate ke halaman yang sesuai
+          // Tombol Logout: menghapus sesi login.
+          if (item.name == "Logout") {
+            await context.read<AuthState>().logout();
+
+            if (!context.mounted) return;
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('You have been logged out.')),
+            );
+            return;
+          }
+
+          // Tombol Tambah Proyek: wajib login.
           if (item.name == "Tambah Proyek") {
+            final allowed = await ensureLoggedIn(context);
+
+            if (!allowed || !context.mounted) return;
+
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProjectFormPage()),
             );
+            return;
           }
+
+          // Education dan Experience tetap menggunakan alur sebelumnya.
+          final allowed = await ensureLoggedIn(context);
+          if (!allowed || !context.mounted) return;
 
           if (item.name == "Tambah Pengalaman") {
             Navigator.push(
